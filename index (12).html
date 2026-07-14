@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashraf Elngar | مواقع وسوشيال ميديا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #090c14;
+    --bg-elev: #10141f;
+    --bg-card: #131828;
+    --line: #212840;
+    --line-soft: #1a2033;
+    --cyan: #5eead4;
+    --cyan-dim: #5eead422;
+    --coral: #ff7a59;
+    --coral-dim: #ff7a5922;
+    --violet: #a78bfa;
+    --text: #eef1f7;
+    --text-dim: #9aa3b8;
+    --text-faint: #5c6479;
+    --whatsapp: #29d17c;
+    --radius: 14px;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,.display{
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  ::selection{background: var(--cyan); color:#04140f;}
+  .mono{ font-family: var(--mono); direction: ltr; unicode-bidi: plaintext; }
+
+  .wire-field{ position: fixed; inset: 0; z-index: 0; opacity: .5; pointer-events: none; }
+  .glow-spot{
+    position: fixed; inset:0; z-index:0; pointer-events:none;
+    background: radial-gradient(600px circle at var(--mx,50%) var(--my,20%), #5eead41a, transparent 60%);
+    transition: background .1s ease;
+  }
+
+  .container{ max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* NAV */
+  header{
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(9,12,20,.75);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height: 68px; }
+  .brand{ display:flex; align-items:center; gap: 12px; }
+  .monogram{
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(145deg, #5eead4, #22d3c4 60%, #0ea5a0);
+    color:#04140f; font-family: var(--mono); font-weight:800; font-size: .82rem;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 0 1px #5eead440, 0 6px 18px #5eead430;
+  }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.25; }
+  .brand-text b{ font-family:'Tajawal',sans-serif; font-weight:900; font-size:1rem; }
+  .brand-text span{ font-family: var(--mono); font-size:.68rem; color: var(--cyan); direction: ltr; }
+  .nav-links{ display:flex; gap: 28px; font-size: .92rem; color: var(--text-dim); }
+  .nav-links a:hover{ color: var(--cyan); }
+  .nav-cta{
+    display:flex; align-items:center; gap:8px;
+    background: var(--whatsapp); color:#04140c; font-weight:700; font-size:.86rem;
+    padding: 10px 20px; border-radius: 10px; white-space:nowrap;
+    transition: filter .15s ease, transform .15s ease;
+  }
+  .nav-cta:hover{ filter:brightness(1.07); transform: translateY(-1px); }
+  .nav-cta:active{ transform: translateY(0); }
+  @media (max-width: 820px){ .nav-links{ display:none; } }
+
+  /* HERO */
+  .hero{ position:relative; padding: 88px 0 70px; overflow:hidden; }
+  .hero-grid{ display:block; max-width: 640px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size: .78rem; color: var(--cyan);
+    background: var(--cyan-dim); border: 1px solid #5eead440; padding: 6px 14px;
+    border-radius: 999px; margin-bottom: 24px; font-weight: 600; font-family: var(--mono);
+  }
+  .hero h1{ font-size: clamp(1.9rem, 4.2vw, 3.1rem); line-height: 1.28; }
+  .hero h1 .accent{ color: var(--cyan); }
+
+  .bismillah{
+    position: fixed; top: 20%; left: 50%; z-index: 300;
+    transform: translate(160%, -50%) scale(.9);
+    opacity: 0; pointer-events: none;
+    font-family: 'Tajawal', sans-serif; font-weight: 800;
+    font-size: clamp(1.3rem, 5vw, 2.1rem); color: var(--cyan);
+    white-space: nowrap;
+  }
+  .bismillah.show{ animation: bismillahIn 5s cubic-bezier(.22,1,.36,1) forwards; }
+  @keyframes bismillahIn{
+    0%{ opacity: 0; transform: translate(160%, -50%) scale(.9); text-shadow: none; }
+    14%{ opacity: 1; transform: translate(-50%, -50%) scale(1); text-shadow: 0 0 18px var(--cyan), 0 0 36px #5eead460; }
+    35%{ text-shadow: 0 0 32px var(--cyan), 0 0 60px #5eead480; }
+    55%{ text-shadow: 0 0 18px var(--cyan), 0 0 36px #5eead460; }
+    75%{ opacity: 1; transform: translate(-50%, -50%) scale(1); text-shadow: 0 0 32px var(--cyan), 0 0 60px #5eead480; }
+    88%{ opacity: 1; transform: translate(-50%, -50%) scale(1.3); text-shadow: 0 0 70px var(--cyan), 0 0 130px var(--cyan); filter: brightness(1.9); }
+    100%{ opacity: 0; transform: translate(-50%, -50%) scale(1.6); filter: brightness(2.4); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bismillah.show{ animation-duration: .4s; }
+  }
+  .hero p{ margin-top: 20px; color: var(--text-dim); font-size: 1.02rem; max-width: 520px; }
+  .hero-actions{ display:flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+  .hero-actions:first-child{ margin-top: 0; }
+  .btn-primary{
+    background: var(--whatsapp); color: #04140c; font-weight: 700; padding: 15px 28px;
+    border-radius: 10px; display:inline-flex; align-items:center; gap:10px; font-size: .95rem;
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    box-shadow: 0 1px 0 0 #ffffff20 inset;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); filter:brightness(1.05); box-shadow: 0 10px 20px -8px #29d17c60, 0 1px 0 0 #ffffff20 inset; }
+  .btn-ghost{
+    border: 1px solid var(--line); background: var(--bg-card); color: var(--text);
+    padding: 15px 26px; border-radius: 10px; font-size: .95rem; font-weight: 600;
+    transition: border-color .15s ease, color .15s ease, transform .15s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+  .dropdown-wrap{ position: relative; display:inline-block; }
+  .dd-chevron{ transition: transform .2s ease; }
+  .dropdown-wrap.open .dd-chevron{ transform: rotate(180deg); }
+  .dropdown-wrap.open .btn-ghost{ border-color: var(--cyan); color: var(--cyan); }
+  .dropdown-menu{
+    position: absolute; top: calc(100% + 10px); left: 50%;
+    transform: translate(-50%, -8px) scale(.96);
+    min-width: 220px; background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 8px; box-shadow: 0 24px 48px -16px rgba(0,0,0,.55);
+    opacity: 0; pointer-events: none; transition: opacity .18s ease, transform .18s ease;
+    z-index: 40;
+  }
+  .dropdown-wrap.open .dropdown-menu{ opacity: 1; transform: translate(-50%, 0) scale(1); pointer-events: auto; }
+  .dropdown-item{
+    display: block; padding: 11px 14px; border-radius: 8px; font-size: .88rem;
+    font-weight: 500; color: var(--text-dim); text-align: center;
+    transition: background .15s ease, color .15s ease;
+  }
+  .dropdown-item + .dropdown-item{ margin-top: 4px; }
+  .dropdown-item:hover{ background: var(--bg-elev); color: var(--cyan); }
+
+  .hero-stats{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin-top: 54px; max-width: 460px;
+    border: 1px solid var(--line); border-radius: 14px; overflow:hidden; background: var(--bg-card);
+  }
+  .stat{ padding: 18px 14px; text-align:center; border-inline-start: 1px solid var(--line); }
+  .stat:first-child{ border-inline-start: none; }
+  .stat b{ display:block; font-family: var(--mono); font-size: 1.35rem; font-weight: 700; color: var(--cyan); }
+  .stat span{ display:block; margin-top: 4px; font-size: .72rem; color: var(--text-faint); line-height:1.4; }
+  @media (max-width: 480px){ .hero-stats{ max-width: 100%; } .stat{ padding: 14px 8px; } .stat span{ font-size: .66rem; } }
+
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* SECTIONS */
+  .section{ padding: 78px 0; border-top: 1px solid var(--line-soft); position: relative; scroll-margin-top: 84px; }
+  .section-head{ display:flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+  .section-tag{ font-size: .74rem; color: var(--text-faint); letter-spacing: .04em; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; display:block; font-family: var(--mono); }
+  .section-head h2{ font-size: clamp(1.4rem, 2.6vw, 2rem); }
+  .section-desc{ color: var(--text-dim); max-width: 420px; font-size: .92rem; }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
+  .card{
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; display:flex; flex-direction: column; gap: 12px;
+    transition: border-color .2s ease, transform .2s ease; position: relative;
+  }
+  .card:hover{ border-color: #5eead460; transform: translateY(-3px); }
+  .card-icon{ width: 40px; height:40px; border-radius: 10px; background: var(--cyan-dim); display:flex; align-items:center; justify-content:center; color: var(--cyan); }
+  .card h3{ font-size: 1.02rem; font-weight: 700; }
+  .card p{ color: var(--text-dim); font-size: .87rem; flex-grow: 1; }
+  .card-order{
+    margin-top: 4px; display:inline-flex; align-items:center; gap: 8px; font-size: .85rem; font-weight: 600;
+    color: var(--whatsapp); padding-top: 12px; border-top: 1px dashed var(--line);
+  }
+  .card-order svg{ transition: transform .15s ease; }
+  .card:hover .card-order svg{ transform: translateX(-3px); }
+
+  /* PLATFORM TABLE STYLE */
+  .platform-block{ margin-bottom: 20px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bg-card); }
+  .platform-head{ display:flex; align-items:center; gap: 12px; padding: 18px 22px; background: var(--bg-elev); border-bottom: 1px solid var(--line); }
+  .platform-head .dot{ width: 8px; height:8px; border-radius:50%; background: var(--coral); }
+  .platform-head h3{ font-size: 1rem; font-weight: 700; }
+  .platform-rows{ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
+  .platform-row{ display:flex; align-items:center; justify-content: space-between; padding: 14px 22px; font-size: .88rem; border-bottom: 1px solid var(--line-soft); border-inline-start: 1px solid var(--line-soft); }
+  .platform-row span{ color: var(--text-dim); }
+  .platform-row a{ color: var(--whatsapp); font-weight: 600; display:flex; align-items:center; gap:6px; }
+
+  /* phone mockup for social section */
+  .phone-mock{
+    width: 220px; border: 1px solid var(--line); border-radius: 26px; padding: 10px;
+    background: var(--bg-card); box-shadow: 0 24px 50px -20px rgba(0,0,0,.55);
+  }
+  .phone-screen{ background: #0c1019; border-radius: 18px; padding: 16px 14px; height: 320px; display:flex; flex-direction:column; gap: 10px; }
+  .phone-stat-row{ display:flex; align-items:center; justify-content:space-between; font-family: var(--mono); font-size: .68rem; color: var(--text-faint); }
+  .bar-chart{ display:flex; align-items:flex-end; gap: 6px; height: 130px; }
+  .bar{ flex:1; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--cyan), #0ea5a0); }
+  .phone-tag{ font-family: var(--mono); font-size: .62rem; color: var(--coral); background: var(--coral-dim); padding: 5px 8px; border-radius: 6px; align-self: flex-start; }
+
+  /* chips */
+  .chip-grid{ display:flex; flex-wrap: wrap; gap: 12px; }
+  .chip{ display:flex; align-items:center; gap: 10px; background: var(--bg-card); border: 1px solid var(--line); padding: 12px 18px; border-radius: 999px; font-size: .88rem; }
+  .chip b{ color: var(--cyan); font-weight:700; }
+  .chip a{ margin-inline-start: 6px; color: var(--whatsapp); font-weight: 700; font-size: .82rem; }
+
+  /* CTA band */
+  .cta-band{ padding: 84px 0; text-align:center; border-top: 1px solid var(--line-soft); position: relative; }
+  .cta-band h2{ font-size: clamp(1.5rem, 3.4vw, 2.2rem); max-width: 620px; margin: 0 auto 16px; }
+  .cta-band p{ color: var(--text-dim); margin-bottom: 30px; }
+
+  footer{
+    border-top: 1px solid var(--line-soft); padding: 30px 0; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap: wrap; gap: 14px; color: var(--text-faint); font-size: .82rem;
+  }
+  footer .credit{ font-family: var(--mono); color: var(--text-dim); direction: ltr; }
+  footer .credit b{ color: var(--cyan); }
+
+  .float-wa{
+    position: fixed; bottom: 22px; left: 22px; z-index: 60; background: var(--whatsapp); color: #04140c;
+    width: 56px; height:56px; border-radius: 50%; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 8px 24px #29d17c55; animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ box-shadow: 0 8px 24px #29d17c55; } 50%{ box-shadow: 0 8px 30px #29d17c99; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .float-wa{ animation: none; } html{ scroll-behavior:auto; }
+  }
+  :focus-visible{ outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  /* SPLASH INTRO */
+  html.loading{ overflow: hidden; }
+  .splash{
+    position: fixed; inset: 0; z-index: 999;
+    background: var(--bg);
+    display:flex; align-items:center; justify-content:center; flex-direction: column; gap: 18px;
+    transition: opacity .6s ease, visibility .6s ease;
+  }
+  .splash.hide{ opacity: 0; visibility: hidden; pointer-events: none; }
+  body.loading-body{ overflow: hidden; height: 100vh; }
+  .splash-ring{
+    width: 84px; height: 84px; border-radius: 50%;
+    background: linear-gradient(145deg, #5eead4, #22d3c4 60%, #0ea5a0);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono); font-weight:800; font-size: 1.5rem; color:#04140f;
+    box-shadow: 0 0 0 8px #5eead41a;
+    animation: splashPop .5s ease;
+  }
+  @keyframes splashPop{ from{ transform: scale(.6); opacity:0; } to{ transform: scale(1); opacity:1; } }
+  .splash-text{
+    font-family: var(--mono); font-size: 1rem; color: var(--text-dim); direction: rtl; text-align:center;
+    min-height: 1.6em;
+  }
+  .splash-text .cur{ display:inline-block; width:8px; height:15px; background: var(--cyan); vertical-align:middle; margin-inline-start:2px; animation: blink 1s step-end infinite; }
+  .splash-bar{ width: 180px; height: 3px; border-radius: 2px; background: var(--line); overflow:hidden; }
+  .splash-bar-fill{ height:100%; width:0%; background: var(--cyan); border-radius:2px; animation: splashFill 2.6s ease forwards; }
+  @keyframes splashFill{ to{ width:100%; } }
+  @media (prefers-reduced-motion: reduce){
+    .splash-ring{ animation:none; } .splash-bar-fill{ animation-duration:.3s; }
+  }
+
+  /* responsive two-up showcase block (social section) */
+  .social-showcase{ display:grid; grid-template-columns: 1fr auto; gap:24px; align-items:start; }
+  @media (max-width: 900px){
+    .social-showcase{ grid-template-columns: 1fr; justify-items:center; }
+  }
+</style>
+</head>
+<body class="loading-body">
+
+<div class="splash" id="splash">
+  <div class="splash-ring">AE</div>
+  <div class="splash-text" id="splashText"></div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+
+<svg class="wire-field" id="wireField"></svg>
+<div class="glow-spot" id="glowSpot"></div>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="monogram">AE</div>
+      <div class="brand-text">
+        <b>أشرف النجار</b>
+        <span>ashrafelngar</span>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#web">مواقع</a>
+      <a href="#hosting">دومينات واستضافة</a>
+      <a href="#social">سوشيال ميديا</a>
+      <a href="#extras">اشتراكات</a>
+    </nav>
+    <a class="nav-cta" id="navWa" href="#" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4 8.94 8.94 0 0 0 3.1 12.94a8.85 8.85 0 0 0 1.18 4.44L3 21l3.7-1.24a8.9 8.9 0 0 0 5.33 1.7A8.94 8.94 0 0 0 21 12.94a8.87 8.87 0 0 0-3.4-6.62Zm-5.55 13.7a7.4 7.4 0 0 1-4.74-1.73l-.34-.28-2.2.73.74-2.15-.3-.36a7.44 7.44 0 0 1 5.84-12.06 7.4 7.4 0 0 1 7.42 7.4 7.44 7.44 0 0 1-6.42 8.45Zm4.07-5.55c-.22-.11-1.32-.65-1.53-.73-.2-.08-.35-.11-.5.11-.15.22-.57.73-.7.88-.13.15-.26.16-.48.05a6.05 6.05 0 0 1-1.78-1.1 6.67 6.67 0 0 1-1.23-1.53c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.4.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.4-.07-.11-.5-1.2-.68-1.64-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.4.05-.6.28-.2.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.6 2.45 3.89 3.43.54.24.97.38 1.3.48.55.17 1.04.15 1.44.09.44-.07 1.32-.54 1.5-1.06.19-.52.19-.97.13-1.06-.06-.1-.2-.15-.42-.26Z" fill="currentColor"/></svg>
+      تواصل واتساب
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="bismillah" id="bismillah">بسم الله الرحمن الرحيم</div>
+      <span class="eyebrow">خدمات تصميم مواقع وسوشيال ميديا</span>
+      <h1>موقعك الإلكتروني هو <span class="accent">موظف المبيعات الأفضل</span> لديك 🚀🎯</h1>
+      <div class="hero-actions">
+        <a class="btn-primary" id="heroWa" href="#" target="_blank" rel="noopener">
+          ابدأ مشروعك الآن
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 4L4 20M20 4H9M20 4V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="dropdown-wrap">
+          <a class="btn-ghost" href="#web" id="browseBtn">
+            تصفح كل الخدمات
+            <svg class="dd-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dropdown-menu" id="browseMenu">
+            <a href="#web" class="dropdown-item">تصميم مواقع</a>
+            <a href="#social" class="dropdown-item">خدمات السوشيال ميديا</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>+15</b><span>خدمة تصميم وربط مواقع</span></div>
+        <div class="stat"><b>05</b><span>منصات سوشيال ميديا</span></div>
+        <div class="stat"><b>&lt;24h</b><span>وقت الرد على واتساب</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="web">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">01 — تصميم المواقع</span>
+        <h2>مواقع احترافية 👨‍💻</h2>
+      </div>
+      <p class="section-desc">صفحة هبوط بسيطة لمتجر إلكتروني متكامل</p>
+    </div>
+
+    <div class="grid" id="webGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="hosting">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">02 — ربط ورفع ودومينات</span>
+        <h2>تجهيز موقعك للنشر بالكامل</h2>
+      </div>
+      <p class="section-desc">رفع الملفات، ضبط الدومين والاستضافة، وإضافة موقعك على خرائط جوجل وهويتك البصرية.</p>
+    </div>
+    <div class="grid" id="hostingGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="social">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">03 — السوشيال ميديا</span>
+        <h2>خدمات السوشيال ميديا</h2>
+      </div>
+      <p class="section-desc">لايكات، متابعين، تعليقات ومشاهدات — بأسعار حلوة وتنفيذ سريع لكل منصة.</p>
+    </div>
+    <div class="social-showcase">
+      <div id="platformList"></div>
+      <div class="phone-mock reveal">
+        <div class="phone-screen">
+          <div class="phone-stat-row"><span>growth.log</span><span id="phoneMonth">2026</span></div>
+          <div class="bar-chart" id="barChart"></div>
+          <span class="phone-tag">+ متابعين حقيقيين</span>
+          <div class="phone-stat-row" style="margin-top:auto;"><span>status</span><span style="color:var(--cyan)">running ●</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="campaigns">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">04 — حملات وحماية</span>
+        <h2>إعلانات ممولة</h2>
+      </div>
+      <p class="section-desc">حملات إعلانية شرعية احترافية.</p>
+    </div>
+    <div class="grid" id="campaignGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="extras">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-tag">05 — اشتراكات وشحن</span>
+        <h2>اشتراكاتك المفضلة، بأسعار حلوة</h2>
+      </div>
+      <p class="section-desc">اضغط على أي اشتراك لطلبه مباشرة.</p>
+    </div>
+    <div class="chip-grid" id="chipGrid"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>محتاج خدمة مش لاقيها هنا؟</h2>
+    <p>ابعتلي تفاصيل الخدمة اللي محتاجها وهنقدهالك — الخدمات فوق مش كل حاجة بقدمها.</p>
+    <a class="btn-primary" id="ctaWa" href="#" target="_blank" rel="noopener">راسلني على واتساب</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:14px;">
+    <span class="credit">&lt;/&gt; crafted &amp; coded by <b>ashrafelngar</b></span>
+    <span>واتساب: 01102394162</span>
+  </div>
+</footer>
+
+<a class="float-wa" id="floatWa" href="#" target="_blank" rel="noopener" aria-label="تواصل معنا على واتساب">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4 8.94 8.94 0 0 0 3.1 12.94a8.85 8.85 0 0 0 1.18 4.44L3 21l3.7-1.24a8.9 8.9 0 0 0 5.33 1.7A8.94 8.94 0 0 0 21 12.94a8.87 8.87 0 0 0-3.4-6.62Zm-5.55 13.7a7.4 7.4 0 0 1-4.74-1.73l-.34-.28-2.2.73.74-2.15-.3-.36a7.44 7.44 0 0 1 5.84-12.06 7.4 7.4 0 0 1 7.42 7.4 7.44 7.44 0 0 1-6.42 8.45Zm4.07-5.55c-.22-.11-1.32-.65-1.53-.73-.2-.08-.35-.11-.5.11-.15.22-.57.73-.7.88-.13.15-.26.16-.48.05a6.05 6.05 0 0 1-1.78-1.1 6.67 6.67 0 0 1-1.23-1.53c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.4.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.4-.07-.11-.5-1.2-.68-1.64-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.4.05-.6.28-.2.22-.8.78-.8 1.9 0 1.12.82 2.2.93 2.35.11.15 1.6 2.45 3.89 3.43.54.24.97.38 1.3.48.55.17 1.04.15 1.44.09.44-.07 1.32-.54 1.5-1.06.19-.52.19-.97.13-1.06-.06-.1-.2-.15-.42-.26Z" fill="currentColor"/></svg>
+</a>
+
+<script>
+  // splash intro: welcome message, then reveal site
+  (function splashIntro(){
+    const splash = document.getElementById('splash');
+    const textEl = document.getElementById('splashText');
+    const msg = "أهلاً بيك يا صديقي 👋";
+    let i = 0;
+    function type(){
+      if(i <= msg.length){
+        textEl.innerHTML = msg.slice(0, i) + '<span class="cur"></span>';
+        i++;
+        setTimeout(type, 55);
+      }
+    }
+    type();
+    setTimeout(() => {
+      splash.classList.add('hide');
+      document.body.classList.remove('loading-body');
+      const bismillah = document.getElementById('bismillah');
+      if(bismillah){ bismillah.classList.add('show'); }
+    }, 2900);
+  })();
+
+  const PHONE = "201102394162";
+
+  // browse-services dropdown
+  (function initBrowseDropdown(){
+    const btn = document.getElementById('browseBtn');
+    const wrap = btn ? btn.closest('.dropdown-wrap') : null;
+    if(!btn || !wrap) return;
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      wrap.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if(!wrap.contains(e.target)){ wrap.classList.remove('open'); }
+    });
+    wrap.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', () => wrap.classList.remove('open'));
+    });
+  })();
+  const waLink = (service) => {
+    const msg = `مرحباً 👋، أريد طلب الخدمة التالية: ${service}`;
+    return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+  };
+  document.getElementById('heroWa').href = waLink("استفسار عام عن الخدمات");
+  document.getElementById('navWa').href = waLink("استفسار عام عن الخدمات");
+  document.getElementById('ctaWa').href = waLink("خدمة غير مذكورة بالموقع");
+  document.getElementById('floatWa').href = waLink("استفسار عام عن الخدمات");
+
+  const icon = (path) => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">${path}</svg>`;
+  const icons = {
+    landing: icon('<rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/><path d="M7 13h10M7 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
+    store: icon('<path d="M4 8l1.5-4h13L20 8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12a3 3 0 0 0 6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
+    business: icon('<path d="M4 21V7l8-4 8 4v14" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6"/><path d="M9 10h1M14 10h1M9 14h1M14 14h1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
+    portfolio: icon('<rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.6"/>'),
+    ad: icon('<path d="M3 11v2a2 2 0 0 0 2 2h1l3 5 1-5h6l4-8-4-8-6 8H6a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'),
+    upload: icon('<path d="M12 3v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 8l5-5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'),
+    domain: icon('<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" stroke="currentColor" stroke-width="1.6"/>'),
+    pin: icon('<path d="M12 21s7-6.2 7-11.2A7 7 0 0 0 5 9.8C5 14.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.6"/>'),
+    brand: icon('<path d="M3 3l9 9M21 3l-9 9M12 12v9M4 21c2-4 4-5 8-5s6 1 8 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'),
+    shield: icon('<path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'),
+    megaphone: icon('<path d="M3 10v4h3l6 4V6l-6 4H3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 9a4 4 0 0 1 0 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>')
+  };
+  const arrow = icon('<path d="M17 7L7 17M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>');
+
+  function renderCards(containerId, items){
+    document.getElementById(containerId).innerHTML = items.map(it => `
+      <div class="card reveal">
+        <div class="card-icon">${icons[it.icon]}</div>
+        <h3>${it.title}</h3>
+        <p>${it.desc}</p>
+        <a class="card-order" href="${waLink(it.title)}" target="_blank" rel="noopener">اطلب الخدمة ${arrow}</a>
+      </div>
+    `).join('');
+  }
+
+  renderCards('webGrid', [
+    {icon:'landing', title:'لاند بيدج (Landing Page)', desc:'صفحة مخصصة وموجهة بالكامل لخدمة أو منتج واحد مصممة خصيصاً لزيادة المبيعات ومعدل التحويل.'},
+    {icon:'store', title:'متجر إلكتروني متكامل', desc:'متجر كامل لمنتجاتك من الصفر — أحذية، ملابس، إكسسوارات وأي فئة تانية.'},
+    {icon:'business', title:'موقع شركة (Business Website)', desc:'تصميم وبناء موقع مخصص يعرض قيم شركتك وإنجازاتها، مما يساهم في بناء مصداقية قوية للعلامة التجارية وجذب شراكات جديدة.'},
+    {icon:'portfolio', title:'موقع بورتفوليو', desc:'منصة تفاعلية مخصصة لعرض إنجازاتك ومشاريعك بأسلوب احترافي يسهل على العملاء تقييم مهاراتك.'},
+    {icon:'ad', title:'صفحة هبوط لحملة إعلانية', desc:'صفحة مخصصة لحملاتك على فيسبوك وإنستغرام لرفع نسبة المبيعات.'},
+  ]);
+
+  renderCards('hostingGrid', [
+    {icon:'upload', title:'رفع الموقع وربطه بالدومين', desc:'رفع ملفات الموقع (Index) وربطها بالدومين الخاص بك بشكل كامل.'},
+    {icon:'domain', title:'إعداد الاستضافة وضبط DNS', desc:'تجهيز الاستضافة بالكامل وضبط إعدادات الـ DNS لربط الدومين صح.'},
+    {icon:'domain', title:'حجز دومين', desc:'حجز دومين لنشاطك بأفضل الأسعار المتاحة.'},
+    {icon:'domain', title:'حجز استضافة', desc:'استضافة مناسبة لموقعك بأفضل سعر.'},
+    {icon:'pin', title:'إضافة موقعك على خرائط جوجل', desc:'ظهور نشاطك بالاسم اللي تحبه، عشان عملاؤك يلاقوك بسهولة.'},
+    {icon:'brand', title:'تصميم هوية بصرية', desc:'لوجو، كروت شخصية، وبروشور احترافي يعبر عن بيزنسك.'},
+  ]);
+
+  renderCards('campaignGrid', [
+    {icon:'megaphone', title:'حملة إعلانية على فيسبوك', desc:'حملات ممولة شرعية بأقل عمولة وأعلى نتائج.'},
+    {icon:'megaphone', title:'حملة إعلانية على تيك توك', desc:'استهداف دقيق لجمهورك بأفضل تكلفة لكل نتيجة.'},
+    {icon:'shield', title:'استرجاع حساب فيسبوك مسروق', desc:'استرداد حسابك في حال تم اختراقه أو سرقته.'},
+    {icon:'shield', title:'قفل حساب فيسبوك', desc:'قفل حساب فيسبوك.'},
+  ]);
+
+  const platforms = [
+    {name:'فيسبوك', items:['لايكات','متابعين','تعليقات','مشاركات']},
+    {name:'تيك توك', items:['لايكات','متابعين','تعليقات','مشاهدات']},
+    {name:'إنستغرام', items:['لايكات','متابعين','تعليقات','مشاركات']},
+    {name:'تويتر (X) و لينكدإن', items:['متابعين','تفاعل','مشاهدات']},
+  ];
+  document.getElementById('platformList').innerHTML = platforms.map(p => `
+    <div class="platform-block reveal">
+      <div class="platform-head"><span class="dot"></span><h3>${p.name}</h3></div>
+      <div class="platform-rows">
+        ${p.items.map(i => `
+          <div class="platform-row">
+            <span>${i}</span>
+            <a href="${waLink(p.name + ' — ' + i)}" target="_blank" rel="noopener">اطلب ${arrow}</a>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  const extras = [
+    'شحن عملات تيك توك','نجوم فيسبوك','اشتراك Gemini Pro','تفعيل CapCut Pro',
+    'Canva Pro','اشتراك Perplexity AI','نشر خبر في جريدة',
+  ];
+  document.getElementById('chipGrid').innerHTML = extras.map(e => `
+    <div class="chip reveal"><b>●</b> ${e} <a href="${waLink(e)}" target="_blank" rel="noopener">اطلب</a></div>
+  `).join('');
+
+  // bar chart in phone mock
+  document.getElementById('barChart').innerHTML = [40,65,50,80,60,95,75].map(h =>
+    `<div class="bar" style="height:${h}%"></div>`
+  ).join('');
+  document.getElementById('phoneMonth').textContent = new Date().getFullYear();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold: .15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // cards render after DOM injection — observe them too
+  setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el)), 50);
+
+  // cursor glow
+  const glow = document.getElementById('glowSpot');
+  window.addEventListener('pointermove', (e) => {
+    glow.style.setProperty('--mx', e.clientX + 'px');
+    glow.style.setProperty('--my', e.clientY + 'px');
+  });
+
+  // background wire field
+  (function drawWires(){
+    const svg = document.getElementById('wireField');
+    const w = window.innerWidth, h = Math.max(window.innerHeight*1.4, 1000);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const cols = Math.max(5, Math.floor(w/180));
+    const rows = 6;
+    const pts = [];
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        pts.push({ x: (c+0.5)*(w/cols) + (Math.random()-0.5)*40, y: (r+0.5)*(h/rows) + (Math.random()-0.5)*60 });
+      }
+    }
+    let paths = '';
+    pts.forEach((p,i) => {
+      if(Math.random() > 0.55 && i+1 < pts.length){
+        const q = pts[i+ (Math.random()>0.5?1:cols)] || pts[i];
+        paths += `<line x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}" stroke="#5eead4" stroke-opacity="0.08" stroke-width="1"/>`;
+      }
+    });
+    let dots = pts.map(p => `<circle cx="${p.x}" cy="${p.y}" r="1.6" fill="#5eead4" fill-opacity="0.18"/>`).join('');
+    svg.innerHTML = paths + dots;
+  })();
+</script>
+
+</body>
+</html>
